@@ -1,4 +1,7 @@
+#define MUTIL_IMPLEMENTATION
 #include "mutil.h"
+
+#include <stdint.h>
 #include <stdio.h>
 
 typedef struct {
@@ -47,6 +50,10 @@ int main(void) {
   printf("Last element: %d\n", mutil_da_last(&ida));
 
   mutil_da_free(ida);
+
+  uintptr_t ptr1 = 32;
+  printf("Test: Is %lu power of 2? - %s\n", ptr1,
+         mutil_is_power_of_two(ptr1) ? "true" : "false");
 
   return 0;
 }

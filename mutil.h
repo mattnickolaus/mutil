@@ -25,6 +25,8 @@
 #define MUTIL_FREE free
 #endif /* MUTIL_FREE */
 
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -102,4 +104,29 @@
   for (typeof((da)->items[0]) *it = (da)->items;                               \
        it < (da)->items + (da)->count; it++)
 
-#endif // MUTIL_H
+#endif // MUTIL_H_
+
+#ifdef MUTIL_IMPLEMENTATION
+#undef MUTIL_IMPLEMENTATION // don't implement more than once
+
+MUTILDEF bool mutil_is_power_of_two(uintptr_t x) { return (x & (x - 1)) == 0; }
+
+MUMUTILDEF uintptr_t align_forward(uintptr_t ptr, size_t align) {
+  uintptr_t p, a, modulo;
+
+  assert(is_power_of_two(align));
+
+  p = ptr;
+  a = (uintptr_t)align;
+  // Same as (p % a) but faster as 'a' is a power of two
+  modulo = p & (a - 1);
+
+  if (modulo != 0) {
+    // If 'p' address is not aligned, push the address to the
+    // next value which is aligned
+    p += a - modulo;
+  }
+  return p;
+}
+
+#endif // MUTIL_IMPLEMENTATION
