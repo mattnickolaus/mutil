@@ -3,7 +3,7 @@
 
 #ifndef MUTILDEF
 /*
-   Goes before declarations and definitions of the nob functions. Useful to
+   Goes before declarations and definitions of the mutil functions. Useful to
    `#define MUTILDEF static inline` if your source code is a single file and you
    want the compiler to remove unused functions.
 */
@@ -78,13 +78,15 @@
     }                                                                          \
   } while (0)
 
-// Side note: The comma syntax here just takes the last item and passes that as
-// the index of the array, but still allows me to use a assert chcek in one line
+// Side note: The comma syntax here just takes the last item after the comma and
+// passes that as the index of the array, but still allows me to use a assert
+// chcek so that everything is still in one line
 #define mutil_da_pop(da)                                                       \
   (da)->items[(MUTIL_ASSERT((da)->count > 0), --(da)->count)]
 
-#define mutil_da_first(da) (da)->items[(MUTIL_ASSERT((da)->count > 0), 0]
-#define mutil_da_last(da) (da)->items[(MUTIL_ASSERT((da)->count > 0, (da)->count-1]
+#define mutil_da_first(da) (da)->items[(MUTIL_ASSERT((da)->count > 0)), 0]
+#define mutil_da_last(da)                                                      \
+  (da)->items[(MUTIL_ASSERT((da)->count > 0)), (da)->count - 1]
 
 #define mutil_da_pop_unordered(da, i)                                          \
   do {                                                                         \

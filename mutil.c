@@ -38,6 +38,14 @@ int main(void) {
   mutil_da_for_each(&ida, num) { printf("%d,", *num); }
   printf("]\n");
 
+  printf("Pop last element: %d\n", mutil_da_pop(&ida));
+  printf("[");
+  mutil_da_for_each(&ida, num) { printf("%d,", *num); }
+  printf("]\n");
+
+  printf("First element: %d\n", mutil_da_first(&ida));
+  printf("Last element: %d\n", mutil_da_last(&ida));
+
   mutil_da_free(ida);
 
   return 0;
