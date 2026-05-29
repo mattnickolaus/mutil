@@ -1,4 +1,5 @@
 #define MUTIL_IMPLEMENTATION
+#define MUTIL_STRIP_PREFIX
 #include "mutil.h"
 
 #include <stdint.h>
@@ -8,7 +9,7 @@ typedef struct {
   int *items;
   size_t capacity;
   size_t count;
-} IntDA;
+} IntegerDynamicArray;
 
 int main(void) {
 
@@ -16,15 +17,15 @@ int main(void) {
   int a[10];
   a[0] = 0;
   a[1] = 1;
-  printf("a len:%lu\n", MUTIL_ARRAY_LEN(a));
-  printf("a[1]=%d\n", MUTIL_ARRAY_GET(a, 1));
+  printf("a len:%lu\n", ARRAY_LEN(a));
+  printf("a[1]=%d\n", ARRAY_GET(a, 1));
   printf("---------------------\n");
 
   printf("Dynamic Array Testing:\n");
-  IntDA ida = {0};
-  mutil_da_append(&ida, 1);
-  mutil_da_append(&ida, 2);
-  mutil_da_append(&ida, 3);
+  IntegerDynamicArray ida = {0};
+  da_append(&ida, 1);
+  da_append(&ida, 2);
+  da_append(&ida, 3);
 
   size_t new_items_count = 3;
   int new_items[3] = {4, 5, 6};

@@ -111,10 +111,10 @@
 
 MUTILDEF bool mutil_is_power_of_two(uintptr_t x) { return (x & (x - 1)) == 0; }
 
-MUMUTILDEF uintptr_t align_forward(uintptr_t ptr, size_t align) {
+MUTILDEF uintptr_t mutil_align_forward(uintptr_t ptr, size_t align) {
   uintptr_t p, a, modulo;
 
-  assert(is_power_of_two(align));
+  assert(mutil_is_power_of_two(align));
 
   p = ptr;
   a = (uintptr_t)align;
@@ -130,3 +130,33 @@ MUMUTILDEF uintptr_t align_forward(uintptr_t ptr, size_t align) {
 }
 
 #endif // MUTIL_IMPLEMENTATION
+
+#ifndef MUTIL_STRIP_PREFIX_GUARD_
+#define MUTIL_STRIP_PREFIX_GUARD_
+// NOTE: The name stripping should be part of the header so it's not
+// accidentally included several times. At the same time, it should be at the
+// end of the file so to not create any potential conflicts in the
+// MUTIL_IMPLEMENTATION. The header obviously cannot be at the end of the file
+// because MUTIL_IMPLEMENTATION needs the forward declarations from there. So
+// the solution is to split the header into two parts where the name stripping
+// part is at the end of the file after the MUTIL_IMPLEMENTATION.
+//
+// Regardless simply #define MUTIL_STRIP_PREFIX below MUTIL_IMPLEMENTATION to
+// to remove the prefixes from your function names
+#ifndef MUTIL_UNSTRIP_PREFIX
+
+#define ARRAY_GET MUTIL_ARRAY_GET
+#define ARRAY_LEN MUTIL_ARRAY_LEN
+#define da_reserve mutil_da_reserve
+#define da_append mutil_da_append
+#define da_free mutil_da_free
+#define da_append_many mutil_da_append_many
+#define da_reverse mutil_da_reverse
+#define da_pop mutil_da_pop
+#define da_first mutil_da_first
+#define da_last mutil_da_last
+#define da_pop_unordered mutil_da_pop_unordered
+
+#endif // MUTIL_STRIP_PREFIX
+
+#endif // MUTIL_STRIP_PREFIX_GUARD_
