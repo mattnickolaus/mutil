@@ -1,5 +1,7 @@
 #define MUTIL_IMPLEMENTATION
 #define MUTIL_STRIP_PREFIX
+
+#define MUTILDEF static inline
 #include "mutil.h"
 
 #include <stdint.h>
