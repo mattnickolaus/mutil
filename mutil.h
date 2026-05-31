@@ -141,8 +141,12 @@ MUTILDEF uintptr_t mutil_align_forward(uintptr_t ptr, size_t align) {
 // the solution is to split the header into two parts where the name stripping
 // part is at the end of the file after the MUTIL_IMPLEMENTATION.
 //
-// Regardless simply #define MUTIL_STRIP_PREFIX below MUTIL_IMPLEMENTATION to
-// to remove the prefixes from your function names
+// Regardless simply `#define MUTIL_STRIP_PREFIX` below `#define
+// MUTIL_IMPLEMENTATION` to to remove the prefixes from your function names
+//
+// Also it is important to note that if one of the binding names below conflict
+// with another imported library I can simply `#undef da_append` for example to
+// unbind and remove that namespace conflict
 #ifndef MUTIL_UNSTRIP_PREFIX
 
 #define ARRAY_GET MUTIL_ARRAY_GET
@@ -156,6 +160,8 @@ MUTILDEF uintptr_t mutil_align_forward(uintptr_t ptr, size_t align) {
 #define da_first mutil_da_first
 #define da_last mutil_da_last
 #define da_pop_unordered mutil_da_pop_unordered
+
+#define is_power_of_two mutil_is_power_of_two
 
 #endif // MUTIL_STRIP_PREFIX
 

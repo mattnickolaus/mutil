@@ -56,7 +56,7 @@ int main(void) {
 
   uintptr_t ptr1 = 32;
   printf("Test: Is %lu power of 2? - %s\n", ptr1,
-         mutil_is_power_of_two(ptr1) ? "true" : "false");
+         is_power_of_two(ptr1) ? "true" : "false");
 
   return 0;
 }
