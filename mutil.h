@@ -155,6 +155,7 @@ MUTILDEF uintptr_t mutil_align_forward(uintptr_t ptr, size_t align) {
 #define da_append mutil_da_append
 #define da_free mutil_da_free
 #define da_append_many mutil_da_append_many
+#define da_for_each mutil_da_for_each
 #define da_reverse mutil_da_reverse
 #define da_pop mutil_da_pop
 #define da_first mutil_da_first
