@@ -163,6 +163,7 @@ MUTILDEF uintptr_t mutil_align_forward(uintptr_t ptr, size_t align) {
 #define da_pop_unordered mutil_da_pop_unordered
 
 #define is_power_of_two mutil_is_power_of_two
+#define align_forward mutil_align_forward
 
 #endif // MUTIL_STRIP_PREFIX
 
