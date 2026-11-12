@@ -104,6 +104,21 @@
   for (typeof((da)->items[0]) *it = (da)->items;                               \
        it < (da)->items + (da)->count; it++)
 
+// ************************* Strings ************************* //
+
+typedef struct {
+  char *items;
+  size_t count;
+  size_t capacity;
+} Mutil_String_Builder;
+
+#define mutil_sb_append_cstr(sb, cstr)                                         \
+  do {                                                                         \
+    const char *s = cstr;                                                      \
+    size_t len = strlen(s);                                                    \
+    mutil_da_append_many(sb, s, len);                                          \
+  } while (0)
+
 #endif // MUTIL_H_
 
 #ifdef MUTIL_IMPLEMENTATION
